@@ -41,7 +41,7 @@ app.get("/listings/:id", async (req,res)=>{
       let {id} = req.params;
    const listinginfo =  await listing.findById(id);
 res.render("C:/Desktop/MajorProject/views/listing/show.ejs", {listinginfo})
-})
+});
 
 
 
