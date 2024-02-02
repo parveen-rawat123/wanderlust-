@@ -349,4 +349,4 @@ const sampleListings = [
     },
   ];
   
-  module.exports = { data: sampleListings };
+  models.exports = { data: sampleListings };
