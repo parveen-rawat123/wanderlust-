@@ -6,10 +6,13 @@ const path = require("path");
 const listing = require("./models/listing.js");
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const methodOverride = require('method-override');
+const ejsMate = require("ejs-mate");
 app.set("view engine", "ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended :true}));
 app.use(methodOverride("_method"));
+app.use('ejs',ejsMate);
+
 
 main()
 .then(()=>{
@@ -60,10 +63,16 @@ app.get("/listings/:id/edit", async(req,res)=>{
 app.put("/listings/:id", async (req,res)=>{
   let {id} = req.params;
     await listing.findByIdAndUpdate(id,{...req.body.listing});
-    redirect("/listing")
+     res.redirect(`/listings/${id}`)
 });
 
-
+//delete route
+app.delete("/listings/:id",async(req,res) =>{
+  let {id} = req.params;
+    let deletelisting = await listing.findByIdAndDelete(id)
+    res.redirect("/listings")
+    console.log(deletelisting)
+});
 
 
 

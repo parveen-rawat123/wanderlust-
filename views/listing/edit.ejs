@@ -8,12 +8,12 @@
 <body>
     <h3>edit your listing</h3>
 
-    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT" >
+    <form method="POST" action="/listings/<%=listingedit._id%>?_method=PUT" >
     <input type="text" name="listing[title]" value="<%= 
     listingedit.title%>"> <br><br>
 
-    <textarea  name="listing[description]" value="<%= 
-    listingedit.description%>"></textarea> <br> <br>      
+    <textarea  name="listing[description]" rows="5" cols="25"> 
+    <%=listingedit.description%></textarea> <br> <br>      
 
     <input type="text" name="listing[image]" 
     value="<%=listingedit.image%>"> <br>   <br>    
