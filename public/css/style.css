@@ -46,6 +46,7 @@
 }
 
 /* cards */
+
 .card{
     border: none !important;
     margin-bottom:2rem;
@@ -61,4 +62,17 @@
 }
 .card-text p{
     font-weight: 400 !important;
+}
+.listinglink{
+    text-decoration: none;
+}
+
+/* card effect */
+.card-img-overlay{
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
 }
