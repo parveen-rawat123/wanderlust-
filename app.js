@@ -36,7 +36,6 @@ app.get("/listings", async (req,res)=>{
 });
 
 //new  listing 
-
 app.get("/listings/new", (req,res)=>{
   res.render("./listing/new.ejs")
 });
@@ -50,6 +49,12 @@ app.get("/listings/:id", async (req,res)=>{
 res.render("./listing/show.ejs", {listinginfo})
 });
 
+//crete route 
+app.post("/listings/new", async (req,res)=>{
+    let newlisting =new listing(req.body.listing);
+     await newlisting.save();
+     res.redirect("/listings")
+});
 
 
 // edit route
@@ -74,25 +79,6 @@ app.delete("/listings/:id",async(req,res) =>{
     res.redirect("/listings")
     console.log(deletelisting)
 });
-
-
-
-
-
-// app.get("/testListing", async (req,res)=>{
-//       let sampleListing = new listing({
-//         title : "my new Villa",
-//         description : "by the beach",
-//         price : 1200,
-//         location : "calnugute,goa",
-//         country : "india",
-//       });
-//       await sampleListing.save();
-//       console.log("sample was save")
-//       res.send("successfull testing")
-// });
-
-
 
 app.get("/",(req,res)=>{
     res.send("hello i'm root")

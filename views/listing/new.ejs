@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-8 offset-2">
     <h3>Create a New Listing</h3>
-    <form action="/listings" method="POST">
+    <form action="/listings/new" method="POST">
         <div class="mb-2">
             <label for="title" class="form-lable">Enter Title</label>
             <input type="text" name="listing[title]" placeholder="Add a catchy title"  class="form-control"> 
@@ -31,7 +31,6 @@
             <input type="text" name="listing[location]" placeholder="Jaipur(RAJ)" class="form-control"> 
         </div>
         <button class="btn btn-dark add-btn mb-2 col-12 col-md-2">ADD</button>
-
         </form>
     </form>
 </div>
