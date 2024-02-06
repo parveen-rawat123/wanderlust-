@@ -10,8 +10,14 @@ row-cols-xs-1" >
           <div class="card-img-overlay"></div>
           <div class="card-body">
             <p class="card-text">
-              <b> <%= listing.title %> </b><br>
-              &#8377;<%= listing.price.toLocaleString("en-IN") %> Night  </p>
+              <b> 
+
+              <% if (listing && listing.price !== null && typeof listing.price !== 'undefined') { %>
+                &#8377;<%= listing.price.toLocaleString("en-IN") %> Night
+            <% } else { %>
+                Price information not available
+            <% } %>
+            </p>
             </div>
           </div>
         </a>
