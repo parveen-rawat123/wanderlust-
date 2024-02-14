@@ -16,7 +16,6 @@
                                 <%= listinginfo.country %> <br>
                 </p>
             </div>
-
             <div class="btns mt-4">
                 <a href="/listings/<%= listinginfo._id %>/edit" class="btn btn-dark  col-md-2  edit-btn">Edit</a>
                 <form action="/listings/<%= listinginfo._id%>?_method=DELETE" method="post">
@@ -47,7 +46,6 @@
                 </form>
                 <hr>
                 <h4> All Reviews</h4>
-                <p><%= newreview.Reviews %></p>
             </div>
         </div>
     </div>
