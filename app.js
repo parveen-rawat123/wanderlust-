@@ -93,9 +93,13 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 app.put("/listings/:id",
   validatelisting, wrapAsync(async (req, res) => {
     let { id } = req.params;
+    let url = req.body.listing.image;
+    let filename = "myimage"
+    req.body.listing.image = {url,filename}
     await listing.findByIdAndUpdate(id, { ...req.body.listing });
     res.redirect(`/listings/${id}`)
   }));
+
 
 //delete route
 app.delete("/listings/:id", wrapAsync(async (req, res) => {

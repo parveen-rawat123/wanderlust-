@@ -4,8 +4,8 @@
 row-cols-xs-1" >
     <% for(let listing of allisting){ %>
       <a href="/listings/<%= listing._id %>" class="listinglink">
-        <div class="card col">
-          <img src="<%= listing.image %>" class="card-img-top" 
+        <div class="card col listing-card">
+          <img src="<%= listing.image.url %>" class="card-img-top" 
           alt="listing-image"
           style="height: 21rem;"/>
           <div class="card-body">
