@@ -86,13 +86,13 @@
    }
 
    /* card effect */
-   .card-img-overlay {
-       opacity: 0;
+   .card-img-top {
+       opacity: 1;
        transition: all 0.3s ease-in-out;
    }
 
-   .card-img-overlay:hover {
-       opacity: 0.2;
+   .card-img-top:hover {
+       opacity: 0.9;
        background-color: white;
    }
 
