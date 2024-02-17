@@ -18,15 +18,12 @@
             <%=listingedit.description%> </textarea>
             <div class="invalid-feedback">Plese enter short description!</div>  
                 </div>
-
-
                 <div class="mb-2">
                     <label for="image" class="form-lable">Image</label>
                     <input type="text" name="listing[image]" value="<%=listingedit.image.url%>" class="form-control"
                     required/>
                     <div class="invalid-feedback"> plese enter a valid LINK/URL!</div>
                 </div>
-
                 <div class="row">
                     <div class="mb-2 col-md-4">
                         <label for="price" class="form-lable">Price</label>
@@ -34,7 +31,6 @@
                         required/>
                         <div class="invalid-feedback"> Price should be valid!</div>
                     </div>
-
                     <div class="mb-2 col-md-8">
                         <label for="country" class="form-lable">Country</label>
                         <input type="text" name="listing[country]" value="<%=listingedit.country%>"
@@ -43,7 +39,6 @@
                             <div class="invalid-feedback"> countryName should be valid!</div>
                     </div>
                 </div>
-
                 <div class="mb-2">
                     <label for="location" class="form-lable">Location</label>
                     <input type="text" name="listing[location]" value="<%= listingedit.location%>" class="form-control"

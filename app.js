@@ -8,7 +8,8 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const listings = require("./routers/listing.js");
 const review = require("./routers/reviews.js")
-
+const session = require("express-session")
+const flash = require("connect-flash");
 
 
 main()
@@ -31,11 +32,33 @@ app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")))
 
 
+
+const sessionoptions = {
+  secret : "mysupersecret",
+  resave : false,
+  saveUninitialized : true,
+  cookie : {
+    expires : Date.now() + 7 * 24 * 60 * 1000, 
+    maxAge :  7 * 24 * 60 * 1000,
+    httpOnly : true
+  },
+};
+
+app.get("/", (req, res) => {
+  res.send("hello i'm root")
+})
+
+app.use(session(sessionoptions));
+app.use(flash());
+
+app.use((req,res,next)=>{
+  res.locals.success = req.flash("success")
+  res.locals.error = req.flash("error")
+  next()
+});
+
 app.use("/listings", listings)
 app.use("/listings/:id/review", review);
-
-
-
 
 // error handling for all route
 app.all("*", (req, res, next) => {
@@ -47,11 +70,6 @@ app.use((err, req, res, next) => {
   let { statusCode = 500, message = "something went wrong" } = err;
   res.status(statusCode).render("./listing/error.ejs", { message });
 });
-
-
-app.get("/", (req, res) => {
-  res.send("hello i'm root")
-})
 
 app.listen(8080, () => {
   console.log("server on listening on port 8080")
