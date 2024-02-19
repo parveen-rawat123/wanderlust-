@@ -1,6 +1,7 @@
 <% layout("/layouts/boilerplate")%>
     <form method="POST" action="/listings/<%=listingedit._id%>?_method=PUT" novalidate 
-        class="needs-validation">
+        class="needs-validation"
+        enctype="multipart/form-data">
         <div class="row">
             <div class="col-8  offset-2">
                 <h3>Edit Your Listing</h3>
@@ -18,12 +19,16 @@
             <%=listingedit.description%> </textarea>
             <div class="invalid-feedback">Plese enter short description!</div>  
                 </div>
+
+
                 <div class="mb-2">
-                    <label for="image" class="form-lable">Image</label>
-                    <input type="text" name="listing[image]" value="<%=listingedit.image.url%>" class="form-control"
-                    required/>
-                    <div class="invalid-feedback"> plese enter a valid LINK/URL!</div>
+                    <label for="image" class="form-lable"> Uplode New Image</label>
+                    <input type="file" 
+                    name="listing[image]"
+                    class="form-control"/>  
                 </div>
+
+
                 <div class="row">
                     <div class="mb-2 col-md-4">
                         <label for="price" class="form-lable">Price</label>
