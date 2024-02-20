@@ -38,12 +38,13 @@ router.get(
   wrapAsync(listingController.renderEditForm)
 );
 
+
 // update route
 router.put(
   "/:id",
   isLoggedIn,
   isOwner,
-  uplode.single('listing[image]'),
+  uplode.single('listing[image]'), 
   validatelisting,
   wrapAsync(listingController.updateListing)
 );
