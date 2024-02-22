@@ -89,29 +89,29 @@
   </div>
 </div>
 
+
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 mt-3">
-  <% for(let listing of allisting){ %>
+  <% for(let newfindval of findval){ %>
     <a href="/listings/<%= listing._id %>" class="listinglink">
       <div class="card col listing-card">
         <img
-        src="<%= listing.image.url %>"
+        src="<%=newfindval.image.url %>"
         class="card-img-top"
         alt="listing-image"
         style="height: 21rem"
         />
         <div class="card-body">
           <p class="card-text">
-            <b> <%= listing.title %></b> <br />
-            &#8377;<%= listing.price.toLocaleString("en-IN") %> Night <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
+            <b> <%= newfindval.title %></b> <br />
+            &#8377;<%= newfindval.price.toLocaleString("en-IN") %> Night <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
           </p>
         </div>
       </div>
     </a>
   <% } %>
 </div>
-
-
 <script>
+
 let taxswith = document.querySelector("#flexSwitchCheckDefault")
 taxswith.addEventListener("click",()=>{
   let tax1 = document.getElementsByClassName("tax-info")

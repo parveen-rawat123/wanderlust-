@@ -14,12 +14,17 @@ const uplode = multer({storage});
 //index route
 router.get("/", wrapAsync(listingController.index));
 
+// search route
+router.get("/search", wrapAsync(listingController.filterbycity))
+
+
 // new  listing
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
 
 //show route
 router.get("/:id", wrapAsync(listingController.showListing));
+
 
 //crete route
 router.post(

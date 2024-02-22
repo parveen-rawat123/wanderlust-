@@ -10,7 +10,8 @@ const sampleListings = [
       price: 1500,
       location: "Malibu",
       country: "United States",
-    }, 
+
+    },
     {
       title: "Modern Loft in Downtown",
       description:
@@ -349,4 +350,4 @@ const sampleListings = [
     },
   ];
   
-  module.exports = { data: sampleListings };
+  module.exports = { data: sampleListings};

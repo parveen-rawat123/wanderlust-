@@ -50,9 +50,7 @@ const sessionoptions = {
   },
 };
 
-app.get("/", (req, res) => {
-  res.send("hello i'm root")
-})
+
 
 app.use(session(sessionoptions));
 app.use(flash());
@@ -71,6 +69,7 @@ app.use((req,res,next)=>{
   next()
 });
 
+
 // app.get("/demouser",async (req,res)=>{
 //  let fakeuser = new User({
 //     email : "student@gamil.com",
@@ -85,6 +84,9 @@ app.use((req,res,next)=>{
 app.use("/listings", listingsRouter)
 app.use("/listings/:id/review", reviewRouter);
 app.use("/",userRouter)
+
+
+
 
 
 // error handling for all route
