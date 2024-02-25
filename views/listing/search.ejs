@@ -90,11 +90,12 @@
 </div>
 
 
+
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 mt-3">
   <% for(let newfindval of findval){ %>
-    <a href="/listings/<%= listing._id %>" class="listinglink">
+    <a href="/listings/<%= newfindval._id %>" class="listinglink">
       <div class="card col listing-card">
-        <img
+        <img 
         src="<%=newfindval.image.url %>"
         class="card-img-top"
         alt="listing-image"
@@ -111,7 +112,6 @@
   <% } %>
 </div>
 <script>
-
 let taxswith = document.querySelector("#flexSwitchCheckDefault")
 taxswith.addEventListener("click",()=>{
   let tax1 = document.getElementsByClassName("tax-info")

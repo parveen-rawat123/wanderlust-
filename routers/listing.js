@@ -14,10 +14,6 @@ const uplode = multer({storage});
 //index route
 router.get("/", wrapAsync(listingController.index));
 
-// search route
-router.get("/search", wrapAsync(listingController.filterbycity))
-
-
 // new  listing
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 

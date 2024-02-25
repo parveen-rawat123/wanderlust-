@@ -8,30 +8,11 @@ module.exports.index = async (req, res) => {
   res.render("./listing/index.ejs", { allisting });
 };
 
-// searchwala
-
-module.exports.filterbycity = async (req, res) => {
-  let cityval = req.query.inputval.toLowerCase(); 
-  let findval = await listing.find({ country : cityval});
-  res.render("./listing/search.ejs", {findval});
-};
-
-
-
-
-// let cityval = req.query.inputval;  
-//  console.log(cityval) 
-// let filtervalue = allisting.filter( Element=>{Element.location===cityval   }) 
-//   res.render("./listing/search.ejs")
-
-
-
-
-
 
 module.exports.renderNewForm = (req, res) => {
   res.render("./listing/new.ejs");
 };
+
 
 module.exports.showListing = async (req, res) => {
   let { id } = req.params;

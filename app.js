@@ -6,7 +6,7 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require('method-override');
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const listingsRouter = require("./routers/listing.js");
@@ -17,6 +17,23 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const userRouter = require("./routers/user.js");
+const listing = require("./models/listing");
+const wrapAsync = require('./utils/wrapAsync.js');
+const { env } = require('process');
+const { log } = require('console');
+const dbUrl =process.env.ATLASDB_URL;
+
+
+async function main() {
+  await mongoose.connect(dbUrl)
+  .then(()=>{
+    console.log("connection success")
+  })
+  .catch((e)=>{
+    console.log("connection feild")
+  })
+};
+
 
 main()
   .then(() => {
@@ -26,9 +43,7 @@ main()
     console.log(err)
   });
 
-async function main() {
-  await mongoose.connect(MONGO_URL)
-};
+  
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -70,6 +85,8 @@ app.use((req,res,next)=>{
 });
 
 
+
+
 // app.get("/demouser",async (req,res)=>{
 //  let fakeuser = new User({
 //     email : "student@gamil.com",
@@ -86,7 +103,31 @@ app.use("/listings/:id/review", reviewRouter);
 app.use("/",userRouter)
 
 
+// search route
+app.get("/search", async (req, res) => {
+  let value = req.query.inputval;
+  let findval;
 
+   if (!value || value.trim() === "") {
+     res.redirect("/listing/index.ejs");
+  }
+  if (!isNaN(value)) {
+    findval = await listing.find({ price: { $eq: parseInt(value) } });
+  } else {
+    findval = await listing.find({
+      $or: [
+        { country: { $regex: value, $options: "i" } },
+        { location: { $regex: value, $options: "i" } },
+        { title: { $regex: value, $options: "i" } },
+      ],
+    });
+  }
+if(findval.length===0){
+  res.render("./listing/notsearch.ejs")
+}else{
+  res.render("./listing/search.ejs", { findval });
+}
+});
 
 
 // error handling for all route
